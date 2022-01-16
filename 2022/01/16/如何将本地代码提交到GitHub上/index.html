@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>如何将本地代码提交到GitHub上 | 山羊不吃天堂草</title><meta name="keywords" content="GitHub提交代码"><meta name="author" content="CL"><meta name="copyright" content="CL"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用git将本地代码提交到GitHub上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何将本地代码提交到GitHub上">
+<meta property="og:url" content="https://01-e.github.io/2022/01/16/%E5%A6%82%E4%BD%95%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E5%88%B0GitHub%E4%B8%8A/index.html">
+<meta property="og:site_name" content="山羊不吃天堂草">
+<meta property="og:description" content="使用git将本地代码提交到GitHub上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picsum.photos/id/668/4133/2745">
+<meta property="article:published_time" content="2022-01-16T07:26:00.000Z">
+<meta property="article:modified_time" content="2022-01-15T16:00:00.000Z">
+<meta property="article:author" content="CL">
+<meta property="article:tag" content="GitHub">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picsum.photos/id/668/4133/2745"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/01-e/images/img/cl9826.png"><link rel="canonical" href="https://01-e.github.io/2022/01/16/%E5%A6%82%E4%BD%95%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E5%88%B0GitHub%E4%B8%8A/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: CL","link":"链接: ","source":"来源: 山羊不吃天堂草","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '如何将本地代码提交到GitHub上',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-01-16 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="/css/style.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/cl9826.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://picsum.photos/id/668/4133/2745')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">山羊不吃天堂草</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">如何将本地代码提交到GitHub上</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-16T07:26:00.000Z" title="发表于 2022-01-16 15:26:00">2022-01-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-15T16:00:00.000Z" title="更新于 2022-01-16 00:00:00">2022-01-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/GitHub/">GitHub</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="如何将本地代码提交到GitHub上"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>根据互联网上的教程，利用<a href="https://github.com/" target="_blank">GitHub Page</a> + <a href="https://hexo.io/zh-cn/index.html" target="_blank">Hexo</a> 免费搭建了<a href="https://01-e.github.io/" target="_blank">个人博客</a>。其中，配置博客花费了最多的时间，而配置好的代码亟需上传到GitHub保存起来，相当于游戏存档，这样之后出错不至于从头再来。</p>
+</blockquote>
+<h4 id="1-提交准备"><a href="#1-提交准备" class="headerlink" title="1. 提交准备"></a>1. 提交准备</h4><ul>
+<li>安装使用<a href="https://git-scm.com/" target="_blank">git</a>（分布式版本控制系统）。非常简单，随便创建一个文件夹（可以是要上传代码的文件夹） &rarr;选中 &rarr;鼠标右键 &rarr;Git Bash Here，这时就会看到一个输入命令的黑框（<code>git</code>终端）。</li>
+</ul>
+<ul>
+<li><p>在<code>git</code>中配置GitHub的账号和邮箱。</p>
+<p>分别执行下面两行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Your Name：GitHub用户名，例如：我的GitHub用户名为“01-e”。</p>
+<p><a href="mailto:&#x65;&#109;&#x61;&#105;&#x6c;&#x40;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#101;&#46;&#99;&#111;&#109;">&#x65;&#109;&#x61;&#105;&#x6c;&#x40;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#101;&#46;&#99;&#111;&#109;</a>：GitHub绑定邮箱，例如：我的邮箱为<a href="mailto:&#99;&#x6c;&#95;&#57;&#56;&#x32;&#54;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;">&#99;&#x6c;&#95;&#57;&#56;&#x32;&#54;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;</a>。</p>
+<p>用户名可以在主页“Your profile”如下图中的三个地方找到。</p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/GitHub%E7%94%A8%E6%88%B7%E5%90%8D.png" alt="用户名"></p>
+<p>邮箱可以在“Settings &rarr;Emails”中找到。</p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/Email.png" alt="Email"></p>
+</li>
+<li><p>在本地生成<code>ssh</code>私钥和公钥，公钥配置在GitHub中，并与本地连接。</p>
+<p>先查看一下自己电脑有没有<code>.ssh</code>目录，查看路径是固定的：<code>C:</code>&rarr;<code>用户</code>&rarr;<code>xxx</code>&rarr;<code>.ssh</code></p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/ssh%E7%9B%AE%E5%BD%95.png" alt=".ssh目录"></p>
+<p>进入这个目录下有没有如下图的<code>id_rsa</code>和<code>id_rsa.pub</code>这两个文件，如果没有，就在<code>git</code>终端中输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这里的邮箱仍然是GitHub绑定的邮箱，这个命令是用来生成密钥对，输入命令之后有提示就按回车键，结束之后，就可以在上面的目录里面找到下图所示密钥对，<code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥。</p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/%E7%A7%81%E9%92%A5%E5%92%8C%E5%85%AC%E9%92%A5.png" alt="私钥和公钥"></p>
+<p>用记事本打开<code>id_rsa.pub</code>全选并复制里面的内容，在GitHub中依次点击”Settings”&rarr;”SSH and GPG keys”&rarr;”New SSH key”，进去之后”Title”可以随便写，将复制的内容全部粘贴到”Key”里面，然后点击”Add SSH key”，这时就可以看到如下图所示配置好的SSH key。</p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/sshkey.png" alt="SSH keys"></p>
+</li>
+</ul>
+<h4 id="2-开始提交"><a href="#2-开始提交" class="headerlink" title="2. 开始提交"></a>2. 开始提交</h4><p>提示：阅读完两个方法之后再开始实践！</p>
+<p>假如电脑上的代码一无所有，只是成功连接本地与GitHub，那么可以看方法一：</p>
+<ul>
+<li><p>方法一：本地仓库已经关联GitHub仓库，开始写代码并提交。</p>
+<ol>
+<li><p>我从0开始，电脑新建一个文件夹，开始在里面写代码。在E盘新建了一个名为“demo”的文件夹，选中文件夹，”Git Bash Here”，输入下面命令初始化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<p>这个命令是将“demo”目录变成Git可以管理的仓库，会提示“Initialized empty Git repository in E:/demo/.git/”初始化了空的Git仓库，会在“demo”目录下新建一个隐藏文件<code>.git</code>，<code>ls -ah</code>命令就可以看见，不能乱改这个文件，否则就把仓库破坏了。</p>
+</li>
+<li><p>添加需要上传的文件或代码到本地仓库。</p>
+<p>在新建的“demo”文件夹下添加一些文件（可以是自己写的代码），我添加了一个”code.txt”文件，输入下面命令查询仓库状态。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p>查询之后如下图所示：</p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/gitstatus.png" alt="git status"></p>
+<p>红色文件是待添加到本地仓库的文件，绿色表示已添加到本地仓库的文件，”demo”文件夹下只有一个“code.txt”文件，并且还没有添加到仓库内，所以显示红色。</p>
+<p>输入下面命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add code.txt</span><br></pre></td></tr></table></figure>
+
+<p>将“code.txt”添加到git仓库的缓存中，这时候不会有任何提示，然后再用<code>git ststus</code>查一下仓库状态，嗯，真香，如下图所示：</p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/gitadd.png" alt="git add"></p>
+<p><strong>tips：</strong></p>
+<p>提交多个文件可以用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add file1 file2 file3...</span><br></pre></td></tr></table></figure>
+
+<p>提交所有文件可以用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<p>现在已经将“code.txt”提交到了仓库缓存，但离进入本地仓库还差最后一步，输入下面命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;first commit log&quot;</span><br></pre></td></tr></table></figure>
+
+<p><code>-m</code>后面输入的是本次提交的说明，可以输入任意内容，这样你就能从历史记录里方便地找到改动记录。</p>
+</li>
+<li><p>将本地仓库关联到GitHub仓库上</p>
+<p>在GitHub上新建一个仓库，用来储存要提交的内容，具体步骤为：点击右上角加号&rarr;选择“New repository”。Repository name填入<code>demo</code>，描述随便写，选择“Private”，然后点击最下方绿色按钮“Create repository”。<img src="https://gitee.com/cl_9826/images/raw/master/img/repository.png" alt="New repository"></p>
+<p>创建成功之后看到如下如所示的页面，</p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/demo.png" alt="demo"></p>
+<p>芜湖~复制红框中的地址，在git终端输入下面命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin </span><br></pre></td></tr></table></figure>
+
+<p>将自己复制的地址粘贴到这串命令后面，例如我要输入的是<code>git remote add origin git@github.com:01-e/demo.git</code>，这里有个提醒，git终端不能<code>Ctrl + v</code>粘贴，只能右键“Pasty”粘贴进去。</p>
+</li>
+<li><p>最后，上传到GitHub，输入命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>出现下面页面：</p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/push.png" alt="git push"></p>
+<p>此时已经将本地代码或文件<code>push</code>到GitHub仓库当中。</p>
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/demo_code.png" alt="demo_code"></p>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>方法二：已有本地仓库，想要添加新的代码或文件到GitHub。</p>
+<p>第一种方法已经将已有代码提交上去，如果又有新增的代码，或者修改了原来的代码，就要增加一个步骤。</p>
+<ol>
+<li><p>在原来的“demo”文件夹下面新增“123.txt”文件，提交到GitHub。首先依旧选中“demo”目录，然后“Git Bash Here”，<code>git status</code>查看仓库状态，发现”123.txt”为红色，并没有在仓库中，这时候分别输入<code>git add 123.txt</code>、<code>git commit -m &quot;feat: update&quot;</code>来上传到本地仓库，然后<code>git remote add origin git@github.com:01-e/demo.git</code>关联到GitHub仓库，如果已经关联过就不用再关联了。最重要的是输入下面命令来同步远程仓库和本地仓库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/pull.png" alt="pull"></p>
+<p>这一步之所以很重要，我是这样理解的，加入你在一个新的文件夹写了一些项目补充代码，是不是要去将GitHub代码“拉”到本地来对照一下，防止本地仓库与远程仓库不同步导致冲突。</p>
+</li>
+<li><p>最后，push!</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/cl_9826/images/raw/master/img/demo_123.png" alt="demo_123"></p>
+</li>
+</ol>
+</li>
+</ul>
+<p>以上，仅记录本人学习如何上传代码或文件到GitHub所写所思。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">CL</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://01-e.github.io/2022/01/16/%E5%A6%82%E4%BD%95%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E5%88%B0GitHub%E4%B8%8A/">https://01-e.github.io/2022/01/16/如何将本地代码提交到GitHub上/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://01-e.github.io" target="_blank">山羊不吃天堂草</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GitHub/">GitHub</a></div><div class="post_share"><div class="social-share" data-image="https://picsum.photos/id/668/4133/2745" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/01/12/hello-world/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hello World</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NTIwNC8zMTY3MQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/cl9826.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">CL</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/01-e"><i class="fab fa-github"></i><span>Find Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/01-e" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://qm.qq.com/cgi-bin/qm/qr?k=dWMOTq5JROGW4gN-EpfjkdFaf6U91aSr&amp;noverify=0" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:cl_9826@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%8F%90%E4%BA%A4%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">1. 提交准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E5%A7%8B%E6%8F%90%E4%BA%A4"><span class="toc-number">2.</span> <span class="toc-text">2. 开始提交</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/16/%E5%A6%82%E4%BD%95%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E5%88%B0GitHub%E4%B8%8A/" title="如何将本地代码提交到GitHub上"><img src="https://picsum.photos/id/668/4133/2745" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何将本地代码提交到GitHub上"/></a><div class="content"><a class="title" href="/2022/01/16/%E5%A6%82%E4%BD%95%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E5%88%B0GitHub%E4%B8%8A/" title="如何将本地代码提交到GitHub上">如何将本地代码提交到GitHub上</a><time datetime="2022-01-16T07:26:00.000Z" title="发表于 2022-01-16 15:26:00">2022-01-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/12/hello-world/" title="Hello World"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2022/01/12/hello-world/" title="Hello World">Hello World</a><time datetime="2022-01-12T08:36:29.000Z" title="发表于 2022-01-12 16:36:29">2022-01-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By CL</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://01-e.github.io"><img class="icp-icon" src="https://cdn.jsdelivr.net/gh/01-e/images/img/cl9826.png"><span>到底啦~</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="true" data-text="CL,blog,welcome" data-fontsize="15px" data-random="false" async="async"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (true) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
