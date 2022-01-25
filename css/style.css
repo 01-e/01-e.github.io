@@ -37,3 +37,15 @@
     color: #fff;
     background-color: #49b1f5;
   }
+
+.footer-support {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-support-logo {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: .2rem;
+}
